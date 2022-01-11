@@ -139,6 +139,10 @@ function Physics (mcData, world) {
     const vel = entity.vel
     const pos = entity.pos
 
+    if(entity.usingHeldItem) {
+      dx *= 0.20
+      dz *= 0.20
+    }
     if (entity.isInWeb) {
       dx *= 0.25
       dy *= 0.05
@@ -683,6 +687,7 @@ class PlayerState {
     this.isCollidedVertically = bot.entity.isCollidedVertically
     this.jumpTicks = bot.jumpTicks
     this.jumpQueued = bot.jumpQueued
+    this.usingHeldItem = bot.usingHeldItem
 
     // Input only (not modified)
     this.attributes = bot.entity.attributes
@@ -721,6 +726,7 @@ class PlayerState {
     bot.entity.isInWeb = this.isInWeb
     bot.entity.isCollidedHorizontally = this.isCollidedHorizontally
     bot.entity.isCollidedVertically = this.isCollidedVertically
+    bot.usingHeldItem = this.usingHeldItem
     bot.jumpTicks = this.jumpTicks
     bot.jumpQueued = this.jumpQueued
   }
